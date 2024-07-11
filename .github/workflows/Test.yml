@@ -6,6 +6,8 @@ name: Build and Test
 on:
   push:
     branches: '*'
+  workflow_dispatch:
+    branches: '*'
 
 jobs:
   Test:
