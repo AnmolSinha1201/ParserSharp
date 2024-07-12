@@ -20,10 +20,12 @@ jobs:
         cd Test
         dotnet test
     - name: Package
-      run: >
+      run: |
+        cd Source
         dotnet pack --configuration Release --output .
     - name: Publish
-      run: >
-        dotnet nuget push *.nupkg
-        -s https://nuget.pkg.github.com/AnmolSinha1201/
-        -k ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd Source
+        dotnet nuget push *.nupkg \
+          -s https://nuget.pkg.github.com/AnmolSinha1201/
+          -k ${{ secrets.GITHUB_TOKEN }}
