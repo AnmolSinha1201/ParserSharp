@@ -27,5 +27,5 @@ jobs:
       run: |
         cd Source
         dotnet nuget push *.nupkg \
-          -s https://nuget.pkg.github.com/AnmolSinha1201/
-          -k ${{ secrets.PACKAGE_PAT }}
+          -s https://nuget.pkg.github.com/AnmolSinha1201/ \
+          -k ${{ secrets.GITHUB_TOKEN }}
