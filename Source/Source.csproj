@@ -6,6 +6,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Description>Parser Combinator to write fluent parsers for binary inputs</Description>
 
     <GeneratedVersion>$([System.DateTime]::UtcNow.ToString(yy.MM.dd.HHmm))</GeneratedVersion>
     <AssemblyVersion Condition=" '$(GeneratedVersion)' == '' ">0.0.0.1</AssemblyVersion>
