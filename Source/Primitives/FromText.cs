@@ -19,7 +19,7 @@ public class FromTextPrimitive : IParserPrimitive
 	}
 
 	public string GetTokenName()
-	=> TextToMatch.Span[0].ToString();
+	=> TextToMatch.ToString();
 }
 
 public static partial class ParserExtensions
