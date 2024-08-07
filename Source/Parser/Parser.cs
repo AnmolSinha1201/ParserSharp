@@ -19,7 +19,7 @@ public class Parser : BaseParserConstruct
 			var result = primitive.Parse(localSpan);
 			if (!result.Success)
 			{
-				var expectedText = TokenName ?? primitive.GetTokenName();
+				var expectedText = string.IsNullOrEmpty(TokenName) ? primitive.GetTokenName() : TokenName;
 				throw new Exception($"Found {localSpan.Truncate(3)}, Expected {expectedText}");
 			}
 				
