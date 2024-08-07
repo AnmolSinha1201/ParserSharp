@@ -27,5 +27,5 @@ public class Tokenization
 
 		var exception = Assert.Throws<Exception>(() => parser.Parse("abc"));
 		Assert.Contains("Number", exception.Message);
-	}
+	}a
 }
