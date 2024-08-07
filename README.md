@@ -1,2 +1,4 @@
+[![GitHub last commit](https://img.shields.io/github/last-commit/AnmolSinha1201/ParserSharp?style=for-the-badge)
+]
+
 # ParserSharp
-[![GitHub Test](https://img.shields.io/github/workflow/status/AnmolSinha1201/Surrogate/Test?label=Test&logo=github&style=for-the-badge)](https://github.com/AnmolSinha1201/ParserSharp/actions?query=workflow%3ATest)
