@@ -9,6 +9,9 @@ public class FromTextPrimitive : IParserPrimitive
     public ParseResult Parse(ReadOnlySpan<char> textToParse)
 	{
 		var slice = textToParse.Slice(0, TextToMatch.Length);
+		if (textToParse.Length < TextToMatch.Length)
+			return new ParseResult(false, 0, ReadOnlySpan<char>.Empty);
+
 		if (slice.Equals(TextToMatch.Span, StringComparison.Ordinal))
 			return new ParseResult(true, TextToMatch.Length, slice);
 
