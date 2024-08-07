@@ -1,6 +1,6 @@
 using ParserSharp;
 
-namespace Test;
+namespace ParserSharp.Tests;
 
 public class BasicParsing
 {
