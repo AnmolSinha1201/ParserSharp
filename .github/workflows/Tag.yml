@@ -27,4 +27,4 @@ jobs:
       run: |
         cd Source
         echo "FILENAME=$(*.nupkg)" >> $GITHUB_ENV
-        echo $FILENAME
+        echo "$FILENAME"
