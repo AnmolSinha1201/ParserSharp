@@ -27,9 +27,4 @@ jobs:
       run: |
         cd Source
         FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)
-        github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/$FILENAME',
-              sha: context.sha
-            })
+        github.rest.git.createRef({owner: context.repo.owner, repo: context.repo.repo, ref: 'refs/tags/$FILENAME', sha: context.sha})
