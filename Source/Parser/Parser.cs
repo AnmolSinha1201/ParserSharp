@@ -42,7 +42,7 @@ public partial class Parser
 			}
 				
 			localSpan = localSpan.Slice(result.CursorPosition);
-			cursorPosition = result.CursorPosition;
+			cursorPosition += result.CursorPosition;
 		}
 
 		return new ParseResult(true, cursorPosition, textToParse.Slice(0, cursorPosition));
