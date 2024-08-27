@@ -22,7 +22,7 @@ jobs:
     - name: Setup tagging
       run: |
         cd Source
-        echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> GITHUB_ENV
+        echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> $GITHUB_ENV
 
     - name: Testing variables
       run: |
