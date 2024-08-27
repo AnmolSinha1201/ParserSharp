@@ -26,7 +26,4 @@ jobs:
     - name: Tag
       run: |
         cd Source
-        echo "FILENAME=$(*.nupkg)" >> $GITHUB_ENV
-        echo "JUSTFILENAME=$(echo $FILENAME | ${FILE%.*})" >> $GITHUB_ENV
         echo "Hello"
-        echo $JUSTFILENAME
