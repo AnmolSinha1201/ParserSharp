@@ -25,12 +25,13 @@ jobs:
         dotnet pack --configuration Release --output .
     - name: Create Tag
       uses: actions/github-script@v7
-      run: |
-        cd Source
-        FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)
-        github.rest.git.createRef({
-          owner: context.repo.owner, 
-          repo: context.repo.repo, 
-          ref: 'refs/tags/$FILENAME', 
-          sha: context.sha
-        })
+      with: 
+        script: |
+          cd Source
+          FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)
+          github.rest.git.createRef({
+            owner: context.repo.owner, 
+            repo: context.repo.repo, 
+            ref: 'refs/tags/$FILENAME', 
+            sha: context.sha
+          })
