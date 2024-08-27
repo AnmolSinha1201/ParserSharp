@@ -24,7 +24,7 @@ jobs:
         cd Source
         echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> GITHUB_ENV
 
-    -name: Testing variables
+    - name: Testing variables
       run: |
         echo ${{ env.FILENAME }}
     - name: Create Tag
