@@ -15,23 +15,21 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    # - name: Test
-    #   run: |
-    #     cd Test
-    #     dotnet test
     - name: Package
       run: |
         cd Source
         dotnet pack --configuration Release --output .
+    - name: Setup tagging
+      run: |
+        cd Source
+        echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> GITHUB_ENV
     - name: Create Tag
       uses: actions/github-script@v7
       with: 
         script: |
-          cd Source
-          FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)
           github.rest.git.createRef({
             owner: context.repo.owner, 
             repo: context.repo.repo, 
-            ref: 'refs/tags/$FILENAME', 
+            ref: 'refs/tags/${{env.FILENAME}}', 
             sha: context.sha
           })
