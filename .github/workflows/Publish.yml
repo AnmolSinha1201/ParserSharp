@@ -70,6 +70,9 @@ jobs:
       with:
         name: NUPKG
         path: Source/*.nupkg
+    - name: Checking files
+      run: |
+        ls -R
     - name: Publish on Github
       run: |
         cd Source
