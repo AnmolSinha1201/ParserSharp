@@ -60,6 +60,7 @@ jobs:
             sha: context.sha
           })
       
+
   Publish:
     needs: [Setup]
     runs-on: ubuntu-latest
@@ -72,6 +73,7 @@ jobs:
     - name: Publish on Github
       run: |
         cd Source
+        ls -a
         dotnet nuget push *.nupkg \
           -s https://nuget.pkg.github.com/AnmolSinha1201/ \
           -k ${{ secrets.GITHUB_TOKEN }}
