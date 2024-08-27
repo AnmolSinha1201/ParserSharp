@@ -24,6 +24,12 @@ jobs:
       run: |
         cd Source
         dotnet pack --configuration Release --output .
+    - name: Create artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: NUPKG
+        path: |
+          *.nupkg
 
   Tag:
     runs-on: ubuntu-latest
