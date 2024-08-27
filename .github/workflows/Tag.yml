@@ -23,16 +23,13 @@ jobs:
       run: |
         cd Source
         dotnet pack --configuration Release --output .
-    - name: Tag
+    - name: Create Tag
       run: |
         cd Source
-        echo "FILENAME=$(ls *.nupkg)" >> $GITHUB_ENV
-        FIL=$(ls *.nupkg)
-        echo $FIL
-        
-    - name: CheckValues
-      run: |
-        echo $FILENAME
-        echo ${{env.FILENAME}}
-        echo "Hello"
-        echo $({FILENAME%.*} | cut -d "." -f 1-)
+        FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)
+        github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/$FILENAME',
+              sha: context.sha
+            })
