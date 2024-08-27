@@ -1,6 +1,6 @@
 namespace ParserSharp;
 
-public static partial class Helpers
+internal static partial class Helpers
 {
 	public static ReadOnlySpan<char> Truncate(this ReadOnlySpan<char> inputSpan, int maxLength, string suffix = "...")
 	{

@@ -2,14 +2,32 @@ using System.Security.Principal;
 
 namespace ParserSharp;
 
-public class Parser : BaseParserConstruct
+public partial class Parser
 {
 	public List<IParserPrimitive> ParsingSequence = new();
 
-    public override void AddToParsingSequence(FromTextPrimitive primitive)
+    public void AddToParsingSequence(IParserPrimitive primitive)
     => ParsingSequence.Add(primitive);
 
-    public override ParseResult Parse(ReadOnlySpan<char> textToParse)
+	public string TokenName = string.Empty;
+	public Parser TokenizeAs(string tokenName)
+	{
+		this.TokenName = tokenName;
+		return this;
+	}
+
+	public string GetTokenName()
+	{
+		if (!this.TokenName.IsNullOrEmpty())
+			return this.TokenName;
+
+		if (this.ParsingSequence.Count == 0)
+			return string.Empty;
+
+		return this.ParsingSequence[^1].GetTokenName();
+	}
+
+    public ParseResult Parse(ReadOnlySpan<char> textToParse)
     {
 		var cursorPosition = 0;
 		var localSpan = textToParse;
@@ -24,7 +42,7 @@ public class Parser : BaseParserConstruct
 			}
 				
 			localSpan = localSpan.Slice(result.CursorPosition);
-			cursorPosition = result.CursorPosition;
+			cursorPosition += result.CursorPosition;
 		}
 
 		return new ParseResult(true, cursorPosition, textToParse.Slice(0, cursorPosition));
