@@ -42,10 +42,11 @@ jobs:
       with:
         name: NUPKG
         path: Source/*.nupkg
-        
+
     - name: Setup tagging
       run: |
         cd Source
+        echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)"
         echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> $GITHUB_ENV
     
     - name: Create Tag
