@@ -27,7 +27,7 @@ jobs:
       run: |
         cd Source
         echo "FILENAME=$(ls *.nupkg)" >> $GITHUB_ENV
-        echo "JUSTFILENAME=$(echo $FILENAME | ${FILE%.*})" >> $GITHUB_ENV
+        echo "JUSTFILENAME=$(ls *.nupkg | ${FILE%.*})" >> $GITHUB_ENV
     - name: CheckValues
       run: |
         echo $FILENAME
