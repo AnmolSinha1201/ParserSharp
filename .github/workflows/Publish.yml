@@ -41,7 +41,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: NUPKG
-        path: Source/*.nupkg
+        path: Source/
 
     - name: Setup tagging
       run: |
@@ -69,7 +69,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: NUPKG
-        path: Source/*.nupkg
+        path: Source/
     - name: Checking files
       run: |
         ls -R
