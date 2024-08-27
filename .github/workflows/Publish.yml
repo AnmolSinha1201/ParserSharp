@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  # workflow_dispatch:
+  #   branches: 'main'
+  push:
+    branches: '*'
+
+jobs:
+  Setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Test
+      run: |
+        cd Test
+        dotnet test
+    - name: Package
+      run: |
+        cd Source
+        dotnet pack --configuration Release --output .
+
+  Tag:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup tagging
+      run: |
+        cd Source
+        echo "FILENAME=$(ls *.nupkg | cut -d "." -f 1-5)" >> $GITHUB_ENV
+    
+    - name: Create Tag
+      uses: actions/github-script@v7
+      with: 
+        script: |
+          github.rest.git.createRef({
+            owner: context.repo.owner, 
+            repo: context.repo.repo, 
+            ref: 'refs/tags/${{env.FILENAME}}', 
+            sha: context.sha
+          })
+      
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Publish on Github
+      run: |
+        cd Source
+        dotnet nuget push *.nupkg \
+          -s https://nuget.pkg.github.com/AnmolSinha1201/ \
+          -k ${{ secrets.GITHUB_TOKEN }}
