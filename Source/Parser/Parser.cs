@@ -2,14 +2,21 @@ using System.Security.Principal;
 
 namespace ParserSharp;
 
-public class Parser : BaseParserConstruct
+public partial class Parser
 {
 	public List<IParserPrimitive> ParsingSequence = new();
 
-    public override void AddToParsingSequence(FromTextPrimitive primitive)
+    public void AddToParsingSequence(IParserPrimitive primitive)
     => ParsingSequence.Add(primitive);
 
-    public override ParseResult Parse(ReadOnlySpan<char> textToParse)
+	public string TokenName = string.Empty;
+	public Parser TokenizeAs(string tokenName)
+	{
+		this.TokenName = tokenName;
+		return this;
+	}
+
+    public ParseResult Parse(ReadOnlySpan<char> textToParse)
     {
 		var cursorPosition = 0;
 		var localSpan = textToParse;

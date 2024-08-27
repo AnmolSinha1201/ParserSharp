@@ -22,15 +22,15 @@ public class FromTextPrimitive : IParserPrimitive
 	=> TextToMatch.ToString();
 }
 
-public static partial class ParserExtensions
+public partial class Parser
 {
-	public static T FromText<T>(this T construct, string text) where T : BaseParserConstruct
-	=> construct.FromText(text.AsMemory());
+	public Parser FromText(string text)
+	=> this.FromText(text.AsMemory());
 
-	public static T FromText<T>(this T construct, ReadOnlyMemory<char> text) where T : BaseParserConstruct
+	public Parser FromText(ReadOnlyMemory<char> text)
 	{
 		var primitive = new FromTextPrimitive(text);
-		construct.AddToParsingSequence(primitive);
-		return construct;
+		this.AddToParsingSequence(primitive);
+		return this;
 	}
 }
