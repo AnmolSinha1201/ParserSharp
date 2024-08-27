@@ -27,10 +27,12 @@ jobs:
       run: |
         cd Source
         echo "FILENAME=$(ls *.nupkg)" >> $GITHUB_ENV
+        FIL=$(ls *.nupkg)
+        echo $FIL
         
     - name: CheckValues
       run: |
         echo $FILENAME
         echo ${{env.FILENAME}}
         echo "Hello"
-        echo ${FILENAME%.*}
+        echo $({FILENAME%.*} | cut -d "." -f 1-)
