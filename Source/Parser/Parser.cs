@@ -16,6 +16,17 @@ public partial class Parser
 		return this;
 	}
 
+	public string GetTokenName()
+	{
+		if (!this.TokenName.IsNullOrEmpty())
+			return this.TokenName;
+
+		if (this.ParsingSequence.Count == 0)
+			return string.Empty;
+
+		return this.ParsingSequence[^1].GetTokenName();
+	}
+
     public ParseResult Parse(ReadOnlySpan<char> textToParse)
     {
 		var cursorPosition = 0;
