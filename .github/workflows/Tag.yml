@@ -28,6 +28,6 @@ jobs:
         cd Source
         echo "FILENAME=$(ls *.nupkg)" >> $GITHUB_ENV
         echo "JUSTFILENAME=$(echo $FILENAME | ${FILE%.*})" >> $GITHUB_ENV
-        echo $FILENAME
+        echo ${{env.FILENAME}}
         echo "Hello"
         echo $JUSTFILENAME
