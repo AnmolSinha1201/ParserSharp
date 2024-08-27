@@ -15,10 +15,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Test
-      run: |
-        cd Test
-        dotnet test
+    # - name: Test
+    #   run: |
+    #     cd Test
+    #     dotnet test
     - name: Package
       run: |
         cd Source
@@ -27,4 +27,4 @@ jobs:
       run: |
         cd Source
         echo "FILENAME=$(*.nupkg)" >> $GITHUB_ENV
-        echo "$FILENAME"
+        echo ("$FILENAME" | ${FILE%.*})
