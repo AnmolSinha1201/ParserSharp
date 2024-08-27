@@ -32,6 +32,7 @@ jobs:
           Source/*.nupkg
 
   Tag:
+    needs: [Setup]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -52,6 +53,7 @@ jobs:
           })
       
   Publish:
+    needs: [Setup]
     runs-on: ubuntu-latest
     steps:
     - name: Publish on Github
