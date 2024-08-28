@@ -4,3 +4,6 @@
 
 
 # ParserSharp
+Welcome to ParserSharp, an efficient parser-combinator library created in C# for effective text parsing. Designed from scratch with user-friendliness in mind, it enables the definition and description of complex structures using a fluent API, making the process feel intuitive.
+
+Additionally, it utilizes the latest C# features to minimize memory usage and ensure fast parsing speeds. We are continuously evolving and adding new features, so stay tuned for updates.
