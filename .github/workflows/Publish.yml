@@ -1,14 +1,12 @@
 name: Publish
 
 on:
-  workflow_run:
-    branches: [main]
-    workflows: [Publish]
+  workflow_dispatch:
 
 jobs:
   Setup:
     runs-on: ubuntu-latest
-
+    if: github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
