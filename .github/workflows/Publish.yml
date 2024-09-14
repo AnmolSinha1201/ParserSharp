@@ -1,9 +1,8 @@
 name: Publish
 
 on:
-  workflow_dispatch:
-    branches: 
-      - main
+  workflow_run:
+    branches: [main]
 
 jobs:
   Setup:
