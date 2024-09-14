@@ -3,6 +3,7 @@ name: Publish
 on:
   workflow_run:
     branches: [main]
+    workflows: [Publish]
 
 jobs:
   Setup:
